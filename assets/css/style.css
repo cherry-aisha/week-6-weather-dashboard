@@ -13,6 +13,7 @@ body {
     height: 100vh;
     width: 100%;
     margin: none;
+    background-color: var(--dark);
 }
 
 .hero {
@@ -95,8 +96,8 @@ button {
     border: none;
     border-radius: 5px;
     padding: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    width: 97%;
+    margin: auto;
 }
 
 button:hover {
