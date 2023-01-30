@@ -106,3 +106,9 @@ button:hover {
     background-color: var(--dark);
     color: var(--yellow);
 }
+
+.results-card {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--blue-grey);
+}

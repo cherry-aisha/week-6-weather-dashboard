@@ -29,14 +29,38 @@
             <h2 class="card-header position-center">Search The Weather by Location</h2>
                 <p class="position-center card-body">Where do you want to search for weather?</p>
                 <input type="text" id="location" placeholder="Enter a Location">
-                <button id="Search">Get The Weather!</button>
+                <button id="buttonSearch">Get The Weather!</button>
                 <div id="error"></div>
-                <hr />
                 <div class="recent-section" id="recent-locations">
                 </div>
-        </aside>
+        </div>
+    </aside>
+<!--- Main Dashboard -->
+    <section>
+        <div id="weather">
+            <div class="weather-icon">
+                <div class="weather-location results-card" id="location-name">Location</div>
+            </div>
+        </div>
+        <div class="weather-info">
+            <div class="temperature">
+                <span>Temperature:</span>
+                <span id="temperature-value">-</span>
+            </div>
+            <div class="uv-index">
+                <span>UV Index:</span>
+                <span id="uvi-index-value">-</span>
+            </div>
+            <div class="humidity">
+                <span>Humidity:</span>
+                <span id="humidity-value">-</span>
+            </div>
+            <div class="wind">
+                <span>Wind:</span>
+                <span id="wind-value">-</span>
+            </div>
 
-    </div>
+    </section>
 </main>
 
     <script src="./assets/js/script.js"></script>
