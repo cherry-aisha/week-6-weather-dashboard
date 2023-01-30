@@ -1,6 +1,22 @@
+:root {
+--header-font: "Comfortaa" sans;
+--blue-grey: #90ADC6;
+--off-white: #E9EAEC;
+--yellow: #FAD02C;
+--dark: #333652;
+}
+
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+
+.hero {
+    color: var(--yellow);
+}
+
+.hero-header {
+    color: var(--dark);
 }
 
