@@ -7,16 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/41f2f76c9a.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
 </head>
 <!--- End of Header Section-->
-
+<!--- Hero Section-->
 <body>
 <header class="hero">
+    <i class="fa-solid fa-sun-bright"></i>
     <h1 class="hero-header position-center">Weather Dashboard</h1>
+    <i class="fa-solid fa-cloud-showers-heavy position-center"></i>
     <p class="tagline position-center">Search for the weather wherever!</p>
 </header>
+<!--- End of Hero Section-->
+<!--- Search Area-->
+<main>
+    <div class="col-12 col-md-4">
+
+        <div class="search-card">
+            <h2 class="card-header position-center">Search The Weather by Location</h2>
+            <form id="weather-search" class="card-body">
+                <label class="form-label position-center">Where do you want to search for weather?</label>
+                <input name="Weather Search" id="weather-search" type="text" autofocus="true" class="search-input">
+                <button type="Search" class="btn">Get The Weather!</button>
+            </form>
+        </div>
+
+    </div>
+</main>
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
