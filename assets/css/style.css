@@ -1,5 +1,6 @@
 :root {
---header-font: "Comfortaa" sans;
+--header-font: "Comfortaa", cursive;
+--body-font: "Roboto Condensed", sans-serif;
 --blue-grey: #90ADC6;
 --off-white: #E9EAEC;
 --yellow: #FAD02C;
@@ -10,13 +11,35 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100%;
+    margin: none;
 }
 
 .hero {
-    color: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--yellow);
+    margin: 15px;
+}
+
+.position-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    margin: auto;
 }
 
 .hero-header {
+    padding: 20px;
     color: var(--dark);
+    font-family: var(--header-font);
+    font-size: 50px;
+}
+
+.tagline {
+    font-family: var(--body-font);
+    font-size: 32px;
+    margin-bottom: 20px;
 }
 
