@@ -1,40 +1,22 @@
-var buttonSearch = document.querySelector('#buttonSearch');
+var WEATHER_API_BASE_URL='api.openweathermap.org';
+var WEATHER_API_KEY = 'a785ed23ab5e676b328a50472e2ce8ea';
+var MAX_DAILY_FORECAST = 5;
 
-var buttonSearch = function (event) {
-    event.preventDefault();
 
-    var location = locationInputEl.value.trim();
-
-    if (location) {
-        getLocation(city);
-
-        locationContainerEl.textContent = '';
-        locationInputEl.value = '';
+var getLocation = function getLocation () {
+    //Getting the location entered by the user
+    var userLocation = locationInput.value;
+    //Verifying that the location is valid and looking it up
+    if (userLocation === '') {
+        setLocationError('Please enter a valid location.');
     } else {
-        alert('Please enter a valid location');
+        lookupLocation(userLocation);
     }
+}
 
-    };
+// Connect search input and button
+var locationInput = document.getElementById('location');
+var searchButton = document.getElementById('search');
 
-    var getLocation = function (city) {
-        var apiURL = 'api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={a785ed23ab5e676b328a50472e2ce8ea}';
-
-        fetch(apiCity)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    displayCity(data, city);
-                });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-            })
-        };
-
-    var displayCity = function (city, searchTerm) {
-        if (city.length === 0) {
-            cityContainerEl.textContent = 'No Weather Results Found.';
-            return;
-        }
-    }
-
+//Event listener on search button
+searchButton.addEventListener('click', getLocation);
