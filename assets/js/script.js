@@ -20,3 +20,22 @@ var searchButton = document.getElementById('search');
 
 //Event listener on search button
 searchButton.addEventListener('click', getLocation);
+
+//Lookup location to get lat/lon
+var lookupLocation = function search () {
+
+var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
+fetch(apiUrl)
+    .then function response () {
+        response.json();
+    }
+    .then function data () {
+        //Getting the first location from the results
+        var location = data[0];
+
+        //Adding the location to recent locations list
+        addRecentLocation(location);
+
+        //Display the weather
+        displayWeather(location);
+    }
