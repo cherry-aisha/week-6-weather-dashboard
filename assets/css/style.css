@@ -74,11 +74,12 @@ main {
     background-color: var(--blue-grey);
 }
 
-#weather-search {
+#location {
     padding: 10px;
     border-width: 0;
     margin: 5px;
     border-radius: 5px;
+    font-family: var(--body-font);
 }
 
 input {
@@ -98,6 +99,7 @@ button {
     padding: 5px;
     width: 97%;
     margin: auto;
+    margin-bottom: 5px;
 }
 
 button:hover {
