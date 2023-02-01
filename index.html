@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://kit.fontawesome.com/41f2f76c9a.css" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
 </head>
@@ -15,9 +14,7 @@
 <!--- Hero Section-->
 <body>
 <header class="hero">
-    <i class="fa-solid fa-sun-bright"></i>
     <h1 class="hero-header position-center">Weather Dashboard</h1>
-    <i class="fa-solid fa-cloud-showers-heavy position-center"></i>
     <p class="tagline position-center">Search for the weather wherever!</p>
 </header>
 <!--- End of Hero Section-->
@@ -37,37 +34,36 @@
     </aside>
 <!--- Main Dashboard -->
     <section>
-        <div id="weather">
+        <div class="results" id="weather">
             <div class="weather-icon">
                 <div class="weather-location results-card" id="location-name">Location</div>
             </div>
-        </div>
-        <div class="weather-info">
-            <div class="temperature">
-                <span>Temperature:</span>
-                <span id="temperature-value">-</span>
-            </div>
-            <div class="uv-index">
-                <span>UV Index:</span>
-                <span id="uvi-index-value">-</span>
-            </div>
-            <div class="humidity">
-                <span>Humidity:</span>
-                <span id="humidity-value">-</span>
-            </div>
-            <div class="wind">
-                <span>Wind:</span>
-                <span id="wind-value">-</span>
+            <div class="weather-info">
+                <div class="temperature">
+                    <span>Temperature:</span>
+                    <span id="temperature-value">-</span>
+                </div>
+                <div class="uv-index">
+                    <span>UV Index:</span>
+                    <span id="uvi-index-value">-</span>
+                </div>
+                <div class="humidity">
+                    <span>Humidity:</span>
+                    <span id="humidity-value">-</span>
+                </div>
+                <div class="wind">
+                    <span>Wind:</span>
+                    <span id="wind-value">-</span>
+                </div>
             </div>
         </div>
 
         <div id="forecast">
             <h3>5 Day Forecast</h3>
-            <span id="forecast-day">-</span>
+            <span id="forecast-days">-</span>
         </div>
-
     </section>
 </main>
 </body>
-<script src="./assets/js/script.js"></script>
+<script src="/assets/js/script.js"></script>
 </html>

@@ -26,7 +26,7 @@ var lookupLocation = function search () {
 
 var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
 fetch(apiUrl)
-    .then function response () {
+    .then;response ()
         response.json();
     }
     .then function data () {
