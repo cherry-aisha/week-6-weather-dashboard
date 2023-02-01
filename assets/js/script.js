@@ -52,13 +52,24 @@ var getWeather = function(lat, lon) {
     })
     .then(function (data) {
         console.log(data);
-        //Show the live weather forecast
+        //Show the current weather forecast
         displayCurrentWeather(data);
 
         //Show 5 day weather forecast
         displayWeatherForecast(data);
     })
 }
+
+var displayCurrentWeather = function (weatherData) {
+    var currentWeather = weatherData.current;
+
+    //Display current weather on the dashboard
+    document.getElementById('temp_value').textContent = `${currentWeather.temp}`;
+    document.getElementById('wind_value').textContent = `${currentWeather.wind_speed}MPH`;
+    document.getElementById('humid_value').textContent = `${currentWeather.humidity}%`;
+    document.getElementById('uvi_value').textContent = `${currentWeather.uvi}`;
+}
+
 //Display weather to cache
 var displayWeather = function(weatherData) {
     document.getElementById('location-name').textContent = `${weatherData.name},${weatherData.country}`;
