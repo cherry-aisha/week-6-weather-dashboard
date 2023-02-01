@@ -6,16 +6,17 @@ function getLocation(event) {
     event.preventDefault();
     //Getting the location entered by the user
     var userLocation = locationInput.value;
+    console.log(locationInput);
     //Verifying that the location is valid and looking it up
     if (userLocation === '') {
         setLocationError('Please enter a valid location.');
     } else {
-        lookupLocation(userLocation);
+        lookupLocation();
     }
 }
 
 //Lookup location to get lat/lon
-var lookupLocation = function (search) {
+function lookupLocation(search) {
 var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
 fetch(apiUrl)
     .then(function (response) {
@@ -40,7 +41,49 @@ fetch(apiUrl)
     })
 }
 
-var getWeather = function(lat, lon) {
+function displayWeatherForecast(weatherData) {
+
+    //Get the daily forecasts
+    var dailyData = weatherData.daily;
+
+    // Show section for the forecasts
+    document.getElementById('forecast').style.display = 'block';
+
+    //Clear current forecasts
+    var forecastList = document.getElementById('forecast-days');
+    forecastList.innerHTML = '';
+
+    //Add new forecast and display
+
+    for (var i = 0; i < MAX_DAILY_FORECAST; i++) {
+        var displayForecast = dailyData[i];
+        var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', {weekday: 'long'});
+        var temp = `${dailyForecast.temp.day}`;
+        var humidity = `${dailyForecast.humidity}%`;
+        var wind = `${dailyForecast.wind_speed}MPH`;
+
+        var newForecast = document.createElement('div');
+        newForecast.classList.add('forecast-day');
+        newForecast.innerHTML = `<div class="weather-info">
+                <div class="date">
+                    <span>${day}</span>
+                </div>
+                <div class="temperature">
+                    <span>${temp}</span>
+                </div>
+                <div class="humidity">
+                    <span>${humidity}</span>
+                </div>
+                <div class="wind">
+                    <span>${wind}</span>
+                </div>
+            </div>`;
+            forecastList.appendChild(newForecast);
+    }
+}
+
+
+function getWeather(lat, lon) {
     //Get the weather from cache
     var apiUrl = `${WEATHER_API_BASE_URL}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`;
     fetch(apiUrl)
@@ -60,7 +103,7 @@ var getWeather = function(lat, lon) {
     })
 }
 
-var displayCurrentWeather = function (weatherData) {
+function displayCurrentWeather(weatherData) {
     var currentWeather = weatherData.current;
 
     //Display current weather on the dashboard
@@ -71,7 +114,7 @@ var displayCurrentWeather = function (weatherData) {
 }
 
 //Display weather to cache
-var displayWeather = function(weatherData) {
+function displayWeather(weatherData) {
     document.getElementById('location-name').textContent = `${weatherData.name},${weatherData.country}`;
 
     getWeather(weatherData.lat, weatherData.lon);
@@ -82,4 +125,4 @@ var locationInput = document.getElementById('location');
 var buttonSearch = document.getElementById('search');
 
 //Event listener on search button
-//buttonSearch.addEventListener('click', getLocation);
+searchButton.addEventListener('click', getLocation);
