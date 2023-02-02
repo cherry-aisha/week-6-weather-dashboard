@@ -1,48 +1,48 @@
-var WEATHER_API_BASE_URL='api.openweathermap.org';
-var WEATHER_API_KEY = 'a785ed23ab5e676b328a50472e2ce8ea';
+var WEATHER_API_BASE_URL = 'https://api.openweathermap.org';
+//var WEATHER_API_KEY = 'a785ed23ab5e676b328a50472e2ce8ea';
+const WEATHER_API_KEY = 'd91f911bcf2c0f925fb6535547a5ddc9';
 var MAX_DAILY_FORECAST = 5;
 
 function getLocation(event) {
     event.preventDefault();
     //Getting the location entered by the user
     var userLocation = locationInput.value;
-    console.log(locationInput);
+
     //Verifying that the location is valid and looking it up
     if (userLocation === '') {
         setLocationError('Please enter a valid location.');
     } else {
-        lookupLocation();
+        lookupLocation(userLocation);
     }
 }
 
 //Lookup location to get lat/lon
 function lookupLocation(search) {
-var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
-fetch(apiUrl)
-    .then(function (response) {
-        if (!response.ok) {
-            throw response.json();
-        }
-        return response.json();
-    })
-    .then(function (data) {
-        var location = data[0];
-        console.log(location);
+    var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
+    fetch(apiUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            var location = data[0];
 
-        //Getting the first location from the results
-        var location = data[0];
-        console.log(location);
+            //Getting the first location from the results
+            var location = data[0];
 
-        //Adding the location to recent locations list
-        //addRecentLocation(location);
+            //Adding the location to recent locations list
+            //addRecentLocation(location);
 
-        //Display the weather
-        displayWeather(location);
-    })
+            //Display the weather
+            displayWeather(location);
+        })
 }
 
 function displayWeatherForecast(weatherData) {
 
+    console.log(weatherData.daily)
     //Get the daily forecasts
     var dailyData = weatherData.daily;
 
@@ -56,8 +56,8 @@ function displayWeatherForecast(weatherData) {
     //Add new forecast and display
 
     for (var i = 0; i < MAX_DAILY_FORECAST; i++) {
-        var displayForecast = dailyData[i];
-        var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', {weekday: 'long'});
+        var dailyForecast = dailyData[i];
+        var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', { weekday: 'long' });
         var temp = `${dailyForecast.temp.day}`;
         var humidity = `${dailyForecast.humidity}%`;
         var wind = `${dailyForecast.wind_speed}MPH`;
@@ -78,29 +78,31 @@ function displayWeatherForecast(weatherData) {
                     <span>${wind}</span>
                 </div>
             </div>`;
-            forecastList.appendChild(newForecast);
+        forecastList.appendChild(newForecast);
     }
 }
 
 
 function getWeather(lat, lon) {
     //Get the weather from cache
+
+    //var apiUrl = `${WEATHER_API_BASE_URL}/data/2.5/onecall?lat=${myData.lat}&lon=${myData.lon}&units=imperial&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`;
     var apiUrl = `${WEATHER_API_BASE_URL}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`;
     fetch(apiUrl)
-    .then(function (response) {
-        if (!response.ok) {
-            throw response.json();
-        }
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-        //Show the current weather forecast
-        displayCurrentWeather(data);
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+            return response.json();
+        })
+        .then(function (data) {
 
-        //Show 5 day weather forecast
-        displayWeatherForecast(data);
-    })
+            //Show the current weather forecast
+            displayCurrentWeather(data);
+
+            //Show 5 day weather forecast
+            displayWeatherForecast(data);
+        })
 }
 
 function displayCurrentWeather(weatherData) {
@@ -108,9 +110,9 @@ function displayCurrentWeather(weatherData) {
 
     //Display current weather on the dashboard
     document.getElementById('temp_value').textContent = `${currentWeather.temp}`;
-    document.getElementById('wind_value').textContent = `${currentWeather.wind_speed}MPH`;
-    document.getElementById('humid_value').textContent = `${currentWeather.humidity}%`;
-    document.getElementById('uvi_value').textContent = `${currentWeather.uvi}`;
+    document.getElementById('wind-value').textContent = `${currentWeather.wind_speed}MPH`;
+    document.getElementById('humidity-value').textContent = `${currentWeather.humidity}%`;
+    //document.getElementById('uvi_value').textContent = `${currentWeather.uvi}`;
 }
 
 //Display weather to cache
