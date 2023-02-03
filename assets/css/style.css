@@ -1,3 +1,4 @@
+/* Global styling */
 :root {
 --header-font: "Comfortaa", cursive;
 --body-font: "Roboto Condensed", sans-serif;
@@ -6,7 +7,7 @@
 --yellow: #FAD02C;
 --dark: #333652;
 }
-
+/* Main section */
 body {
     display: flex;
     flex-direction: column;
@@ -15,7 +16,7 @@ body {
     margin: none;
     background-color: var(--dark);
 }
-
+/* Header section */
 .hero {
     display: flex;
     flex-direction: column;
@@ -48,7 +49,7 @@ main {
     display: flex;
     flex-direction: row;
 }
-
+/* Cards styling */
 .card-header {
     color: var(--yellow);
     font-family: var(--header-font);
@@ -95,7 +96,7 @@ input {
     color: var(--dark);
     font-size: 20px;
 }
-
+/* Button styling */
 button {
     background-color: var(--yellow);
     color: var(--dark);
@@ -113,7 +114,7 @@ button:hover {
     background-color: var(--dark);
     color: var(--yellow);
 }
-
+/* Results styling */
 .results {
     display: flex;
     flex-direction: column;
@@ -149,11 +150,11 @@ button:hover {
     display: flex;
     flex-direction: row;
     background-color: var(--blue-grey);
-    min-width: 300px;
+    min-width: 272px;
     line-height: 20px;
     padding: 20px;
 }
-
+/* Dynamic Section Styling */
 #forecast-days {
     display: flex;
     flex-direction: row;
@@ -165,3 +166,28 @@ button:hover {
     font-family: var(--body-font);
 }
 
+/* Responsive Styling */ 
+@media screen and (max-width: 768px) {
+    main {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .search-card {
+        margin-bottom: 10px;
+        min-width: 400px;
+    }
+    .results {
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+    .results-daily {
+        flex-direction:column;
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+    #forecast-days {
+        display:flex;
+        flex-direction:column;
+        margin-bottom: 20px;
+    }
+}
