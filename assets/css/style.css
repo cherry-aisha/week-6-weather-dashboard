@@ -74,11 +74,18 @@ main {
 }
 
 #location {
-    padding: 10px;
-    border-width: 0;
+    padding: 5px;
     margin: 5px;
     border-radius: 5px;
     font-family: var(--body-font);
+    color: var(--yellow);
+    justify-content: left;
+}
+
+.location-h {
+    padding: 5px;
+    font-size: 40px;
+    color: var(--yellow);
 }
 
 input {
@@ -110,7 +117,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     background-color: var(--blue-grey);
-    Margin-left: 20px;
+    margin-left: 20px;
     font-family: var(--header-font);
 }
 
@@ -118,4 +125,6 @@ button:hover {
     display: flex;
     flex-direction: row;
     background-color: var(--blue-grey);
+    min-width: 300px;
 }
+
