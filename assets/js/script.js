@@ -69,7 +69,7 @@ function displayWeatherForecast(weatherData) {
                     <span>${day}</span>
                 </div>
                 <div class="temperature">
-                    <span>${temp}</span>
+                    <span>${temp}F</span>
                 </div>
                 <div class="humidity">
                     <span>${humidity}</span>
@@ -109,7 +109,7 @@ function displayCurrentWeather(weatherData) {
     var currentWeather = weatherData.current;
 
     //Display current weather on the dashboard
-    document.getElementById('temp_value').textContent = `${currentWeather.temp}`;
+    document.getElementById('temp_value').textContent = `${currentWeather.temp}°F`;
     document.getElementById('wind-value').textContent = `${currentWeather.wind_speed}MPH`;
     document.getElementById('humidity-value').textContent = `${currentWeather.humidity}%`;
     //document.getElementById('uvi_value').textContent = `${currentWeather.uvi}`;
