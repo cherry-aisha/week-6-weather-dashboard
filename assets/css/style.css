@@ -71,6 +71,7 @@ main {
     max-width: 300px;
     margin-left: 20px;
     background-color: var(--blue-grey);
+    min-height: 300px;
 }
 
 #location {
@@ -119,6 +120,29 @@ button:hover {
     background-color: var(--blue-grey);
     margin-left: 20px;
     font-family: var(--header-font);
+    min-height: 300px;
+}
+
+.results-daily {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue-grey);
+    margin-left: 20px;
+    font-family: var(--header-font);
+    min-width: 64%;
+}
+
+.result-h {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.result-day-h {
+    margin-left: 20px;
+    font-size: 20px;
+    color: var(--yellow);
+    font-family: var(--header-font);
+    font-size: 40px;
 }
 
 .results-card {
@@ -126,5 +150,12 @@ button:hover {
     flex-direction: row;
     background-color: var(--blue-grey);
     min-width: 300px;
+    line-height: 20px;
+    padding: 20px;
+}
+
+#forecast-days {
+    display: flex;
+    flex-direction: row;
 }
 

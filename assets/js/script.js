@@ -47,7 +47,7 @@ function displayWeatherForecast(weatherData) {
     var dailyData = weatherData.daily;
 
     // Show section for the forecasts
-    document.getElementById('forecast').style.display = 'block';
+    document.getElementById('forecast').style.class = 'daily-card';
 
     //Clear current forecasts
     var forecastList = document.getElementById('forecast-days');
