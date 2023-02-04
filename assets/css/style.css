@@ -80,7 +80,6 @@ main {
     margin: 5px;
     border-radius: 5px;
     font-family: var(--body-font);
-    color: var(--yellow);
     justify-content: left;
 }
 

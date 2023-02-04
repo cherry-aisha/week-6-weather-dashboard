@@ -47,7 +47,7 @@ function displayWeatherForecast(weatherData) {
     var dailyData = weatherData.daily;
 
     // Show section for the forecasts
-    document.getElementById('forecast').style.class = 'daily-card';
+    document.getElementById('forecast').style.display = 'block';
 
     //Clear current forecasts
     var forecastList = document.getElementById('forecast-days');
@@ -58,28 +58,24 @@ function displayWeatherForecast(weatherData) {
     for (var i = 0; i < MAX_DAILY_FORECAST; i++) {
         var dailyForecast = dailyData[i];
         var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', { weekday: 'long' });
-        var icon = `${dailyForecast.weather.icon}`;
-        var temp = `☀️${dailyForecast.temp.day}°`;
-        var humidity = `💧${dailyForecast.humidity}%`;
-        var wind = `🌬️${dailyForecast.wind_speed}MPH`;
+        var temp = `${dailyForecast.temp.day}`;
+        var humidity = `${dailyForecast.humidity}%`;
+        var wind = `${dailyForecast.wind_speed}MPH`;
 
         var newForecast = document.createElement('div');
         newForecast.classList.add('forecast-day');
         newForecast.innerHTML = `<div class="weather-info">
                 <div class="date">
-                    <span>${icon}</span>
-                </div>
-                <div class="date">
                     <span>${day}</span>
                 </div>
                 <div class="temperature">
-                    <span>${temp}F</span>
+                    <span> ☀️ ${temp}</span>
                 </div>
                 <div class="humidity">
-                    <span>${humidity}</span>
+                    <span> 💧 ${humidity}</span>
                 </div>
                 <div class="wind">
-                    <span>${wind}</span>
+                    <span> 🌬️ ${wind}</span>
                 </div>
             </div>`;
         forecastList.appendChild(newForecast);
@@ -113,7 +109,7 @@ function displayCurrentWeather(weatherData) {
     var currentWeather = weatherData.current;
 
     //Display current weather on the dashboard
-    document.getElementById('temp_value').textContent = `${currentWeather.temp}°F`;
+    document.getElementById('temp_value').textContent = `${currentWeather.temp}`;
     document.getElementById('wind-value').textContent = `${currentWeather.wind_speed}MPH`;
     document.getElementById('humidity-value').textContent = `${currentWeather.humidity}%`;
     //document.getElementById('uvi_value').textContent = `${currentWeather.uvi}`;
@@ -125,6 +121,34 @@ function displayWeather(weatherData) {
 
     getWeather(weatherData.lat, weatherData.lon);
 }
+
+function loadLocations() {
+    var savedLocations = localStorage.getItem("recentLocations");
+    if(savedLocations){
+        recentLocations = JSON.parse(savedLocations);
+
+        var recentSearchesList = document.querySelector("#recentSearchesList");
+        recentSearchesList.innerHTML =""
+        for(var i = 0; i < recentLocations.length; i++){
+            var newLocation = document.createElement("li");
+            newLocation.textContent = recentLocations[i];
+            newLocation.onclick = onClickRecentLocation;
+
+            recentSearchesList.appendChild(newLocation);
+        }
+    }
+}
+
+// Save the location to local storage
+function saveLocation(location){
+    
+    recentLocations.push(location);
+    localStorage.setItem("recentLocations", JSON.stringify(recentLocations));
+
+}
+
+// Load in the saved locations when the page first loads
+loadLocations();
 
 // Connect search input and button
 var locationInput = document.getElementById('location');
