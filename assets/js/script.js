@@ -123,16 +123,16 @@ function displayWeather(weatherData) {
 }
 
 function loadLocations() {
-    var savedLocations = localStorage.getItem("recentLocations");
+    var savedLocations = localStorage.getItem("location");
     if(savedLocations){
         recentLocations = JSON.parse(savedLocations);
 
         var recentSearchesList = document.querySelector("#recentSearchesList");
-        recentSearchesList.innerHTML =""
-        for(var i = 0; i < recentLocations.length; i++){
+        recentSearchesList.innerHTML = ""
+        for(var i = 0; i < savedLocations.length; i++){
             var newLocation = document.createElement("li");
             newLocation.textContent = recentLocations[i];
-            newLocation.onclick = onClickRecentLocation;
+            newLocation.onclick = onClickSearchButton;
 
             recentSearchesList.appendChild(newLocation);
         }
@@ -140,10 +140,10 @@ function loadLocations() {
 }
 
 // Save the location to local storage
-function saveLocation(location){
+function saveLocation(location) {
     
     recentLocations.push(location);
-    localStorage.setItem("recentLocations", JSON.stringify(recentLocations));
+    localStorage.setItem("recentSearchesList", JSON.stringify(recentLocations));
 
 }
 
