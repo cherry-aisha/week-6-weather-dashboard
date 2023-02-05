@@ -3,6 +3,9 @@ var WEATHER_API_BASE_URL = 'https://api.openweathermap.org';
 const WEATHER_API_KEY = 'd91f911bcf2c0f925fb6535547a5ddc9';
 var MAX_DAILY_FORECAST = 5;
 
+// Create an Empty array to store our recent locations
+var recentLocations = [];
+
 function getLocation(event) {
     event.preventDefault();
     //Getting the location entered by the user
@@ -16,6 +19,11 @@ function getLocation(event) {
     }
 }
 
+function onClickSearchButton(e) {
+    var location = e.target.textContent;
+    lookupLocation(location);
+}
+
 //Lookup location to get lat/lon
 function lookupLocation(search) {
     var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
@@ -27,6 +35,10 @@ function lookupLocation(search) {
             return response.json();
         })
         .then(function (data) {
+
+            // Save the Location back to Local Storage
+            saveLocation(data[0].name);
+
             var location = data[0];
 
             //Getting the first location from the results
@@ -53,21 +65,30 @@ function displayWeatherForecast(weatherData) {
     var forecastList = document.getElementById('forecast-days');
     forecastList.innerHTML = '';
 
+
     //Add new forecast and display
 
+
     for (var i = 0; i < MAX_DAILY_FORECAST; i++) {
+
         var dailyForecast = dailyData[i];
+
+
         var day = new Date(dailyForecast.dt * 1000).toLocaleDateString('en-GB', { weekday: 'long' });
         var temp = `${dailyForecast.temp.day}`;
         var humidity = `${dailyForecast.humidity}%`;
         var wind = `${dailyForecast.wind_speed}MPH`;
+        var iconUrl = `https://openweathermap.org/img/w/${dailyForecast.weather[0].icon}.png`;
 
         var newForecast = document.createElement('div');
         newForecast.classList.add('forecast-day');
         newForecast.innerHTML = `<div class="weather-info">
                 <div class="date">
-                    <span>${day}</span>
+                    <span><img src="${iconUrl}"></span>
                 </div>
+                <div class="icon">
+                <span>${day}</span>
+            </div>
                 <div class="temperature">
                     <span> ☀️ ${temp}</span>
                 </div>
@@ -123,17 +144,17 @@ function displayWeather(weatherData) {
 }
 
 function loadLocations() {
-    var savedLocations = localStorage.getItem("location");
-    if(savedLocations){
+    var savedLocations = localStorage.getItem("recentSearchesList");
+    if (savedLocations) {
         recentLocations = JSON.parse(savedLocations);
 
         var recentSearchesList = document.querySelector("#recentSearchesList");
         recentSearchesList.innerHTML = ""
-        for(var i = 0; i < savedLocations.length; i++){
+        for (var i = 0; i < recentLocations.length; i++) {
             var newLocation = document.createElement("li");
             newLocation.textContent = recentLocations[i];
-            newLocation.onclick = onClickSearchButton;
 
+            newLocation.onclick = onClickSearchButton;
             recentSearchesList.appendChild(newLocation);
         }
     }
@@ -141,10 +162,8 @@ function loadLocations() {
 
 // Save the location to local storage
 function saveLocation(location) {
-    
     recentLocations.push(location);
     localStorage.setItem("recentSearchesList", JSON.stringify(recentLocations));
-
 }
 
 // Load in the saved locations when the page first loads

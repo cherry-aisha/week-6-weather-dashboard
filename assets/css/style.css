@@ -165,6 +165,21 @@ button:hover {
     font-family: var(--body-font);
 }
 
+li {
+    text-decoration: none;
+    list-style: none;
+    font-family: var(--body-font);
+    justify-content: center;
+    text-align: center;
+    border-bottom-width: bottom 3px var(--off-white);
+    padding: 5px;
+}
+
+li:hover {
+    cursor: pointer;
+    color: var(--yellow);
+}
+
 /* Responsive Styling */ 
 @media screen and (max-width: 768px) {
     main {
