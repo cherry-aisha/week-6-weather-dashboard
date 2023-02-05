@@ -33,4 +33,8 @@ THEN I am again presented with current and future conditions for that city
 ##### Demo
 ![Watch the Demo]()
 
+##### Visit The Page
+Link to [Github Deployed Page](https://cherry-aisha.github.io/week-5-work-day-scheduler/)
 
+##### Visit The GitHub Repo
+Link to [Github Repo](https://github.com/cherry-aisha/week-6-weather-dashboard)
